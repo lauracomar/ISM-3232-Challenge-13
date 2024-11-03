@@ -12,6 +12,7 @@ function fetchProducts() { //function to fetch data from api
         .then(data => { // process data
             displayDetails(data);// calls for display details
         })
+        // Task 4: Handle Errors Gracefully
         .catch(error => { // deals w any errors that occur in fetch request/then chains
             console.log('Fetch error', error); //log error to debug
             document.getElementById('product-container').innerHTML = '<p>Couldnt load, try again.</p>'; //error message
