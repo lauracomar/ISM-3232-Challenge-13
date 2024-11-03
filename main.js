@@ -16,4 +16,22 @@ function fetchProducts() { //function to fetch data from api
             console.log('Fetch error', error); //log error to debug
             document.getElementById('product-container').innerHTML = '<p>Couldnt load, try again.</p>'; //error message
         })
-} 
+}
+//Tas 3: Display Product Details Dynamically
+function displayDetails(productdetails) {
+    const container = document.getElementById('product-container'); // container where the products are displayed
+    container.innerHTML = ''; //clear
+    productdetails.forEach(product => { //loop through products to get details
+        const { company, name, price, image } = product.fields; // destructure object to pull properties
+        const imageurl = image[0].url; // gets url from image, gets the first image from url 
+        const productDivision = document.createElement('div'); //creates new division to hold product info
+        productDivision.classList.add('product'); // product class to div
+        productDivision.innerHTML = ` 
+            <h2>${name}</h2>
+            <p>Company: ${company}</p>
+            <p>Price:$${(price / 100).toFixed(2)}</p>
+            <img src="${imageUrl}" alt="${name}>
+            `; //format product details 
+        container.appendChild(productDivision); // add each products division into container
+    });
+}
